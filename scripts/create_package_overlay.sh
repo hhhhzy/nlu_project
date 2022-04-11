@@ -33,8 +33,7 @@ source ~/.bashrc
 conda activate /ext3/conda/bootcamp
 conda install -y pytest
 conda install -c conda-forge -y hydra-core omegaconf openssh
-pip install --upgrade jupyter
-pip install ipywidgets
+pip install fsspec==2022.3.0
 pip install pyarrow
 pip install pytorch
 pip install seaborn
