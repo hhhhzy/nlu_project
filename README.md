@@ -11,6 +11,14 @@ For first time usage:
 
 Start from here if you have done step 1 and 2 before:
 
-3. Run `sbatch ./scripts/run_jupyter.sbatch`.
+3. Go to https://ood-3.hpc.nyu.edu/ -> Interactive Apps -> Jupyter Notebook
 
-4. Follow the instructions printed on the slurm output.
+4. Follow the instructions under 'How to use your singularity+conda environment in jupyterhub'. The python wrapper for step 2 should look like this:
+
+```
+singularity exec $nv \
+  --overlay /scratch/zh2095/nlu_project/overlay-base.ext3:ro \
+  --overlay /scratch/zh2095/nlu_project/overlay-packages.ext3:ro \
+  /scratch/wz2247/singularity/images/pytorch_21.06-py3.sif \
+  /bin/bash -c "source ~/.bashrc; conda activate /ext3/conda/bootcamp; $cmd $args"
+```
