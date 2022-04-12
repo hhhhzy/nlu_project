@@ -22,3 +22,4 @@ singularity exec $nv \
   /scratch/wz2247/singularity/images/pytorch_21.06-py3.sif \
   /bin/bash -c "source ~/.bashrc; conda activate /ext3/conda/bootcamp; $cmd $args"
 ```
+5. Launch the notebook, and select the kernel 'my_env'.
