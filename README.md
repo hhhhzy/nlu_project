@@ -3,13 +3,13 @@
 ## Usuage
 
 ### Run jupyter notebook with the singularity environment
-For first time usage:
+For first time usage, create the two overlay files that contains all the packages needed:
 
 1. Clone this repo to greene scratch.
 
 2. In the main directory of nlu_project, run `bash ./scripts/create_base_overlay.sh` and `bash ./scripts/create_package_overlay.sh`.
 
-Start from here if you have done step 1 and 2 before:
+If you already have the overlay files:
 
 3. Go to https://ood-3.hpc.nyu.edu/ -> Interactive Apps -> Jupyter Notebook
 
