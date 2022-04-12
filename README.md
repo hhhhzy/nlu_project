@@ -2,7 +2,7 @@
 
 ## Usuage
 
-### Run jupyter notebook in the singularity container
+### Run jupyter notebook with the singularity environment
 For first time usage:
 
 1. Clone this repo to greene scratch.
