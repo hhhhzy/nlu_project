@@ -10,6 +10,7 @@ For first time usage, create the two overlay files that contains all the package
 2. In the main directory of nlu_project, run `bash ./scripts/create_base_overlay.sh` and `bash ./scripts/create_package_overlay.sh`.
 
 If you already have the overlay files:
+
 3. Connect to NYU vpn.
 
 4. Go to https://ood-3.hpc.nyu.edu/ -> Interactive Apps -> Jupyter Notebook
