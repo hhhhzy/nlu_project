@@ -1,11 +1,11 @@
-Container: container_1648648882306_26560_01_000001 on hc03.nyu.cluster_8041
+Container: container_1648648882306_26598_01_000001 on hc09.nyu.cluster_8041
 LogAggregationType: AGGREGATED
 ===========================================================================
 LogType:stdout
-LogLastModifiedTime:Wed Apr 20 01:04:39 -0400 2022
-LogLength:273
+LogLastModifiedTime:Wed Apr 20 02:03:43 -0400 2022
+LogLength:272
 LogContents:
-Number of users in training: 177074
+Number of users in training: 177010
 code:1
 No trained model found, start training...
 model saved
@@ -13,7 +13,7 @@ predictions done
 truth done
 rdd created
 metrics done
-Rank:15, regParam: 0.01, map score:  0.056335417308015355, ndcg score: 0.07426712888034614, pk score: 0.005246958110902709
+Rank:15, regParam: 0.01, map score:  0.052172539609052285, ndcg score: 0.07009238685863273, pk score: 0.00508094402184513
 
 End of LogType:stdout
 ***********************************************************************
