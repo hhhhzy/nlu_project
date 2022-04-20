@@ -55,7 +55,7 @@ def main(spark, netID, infile):
     
 
     ###Create model
-    ranks = [5]#,10,15,20]
+    ranks = [15]#,10,15,20]
     regParams = [0.01]#[1.#,0.1,0.01]
     for rank in ranks:
         for regParam in regParams:
@@ -70,7 +70,7 @@ def main(spark, netID, infile):
             else:  
                 print(f'code:{code}') 
                 print('No trained model found, start training...')
-                als = ALS(rank=rank, maxIter=5, seed=40, regParam=regParam, userCol="user_Index", itemCol="item_Index", ratingCol="rating", implicitPrefs=False,nonnegative=True,coldStartStrategy="drop")
+                als = ALS(rank=rank, maxIter=15, seed=40, regParam=regParam, userCol="user_Index", itemCol="item_Index", ratingCol="rating", implicitPrefs=False,nonnegative=True,coldStartStrategy="drop")
                 model = als.fit(cf)
                 ### Save model for testing set
                 als.write().overwrite().save(f'model/als_{rank}_{regParam}_{infile}')
@@ -78,7 +78,7 @@ def main(spark, netID, infile):
                 print('model saved')
            
             user_ids = cf_val.select(als.getUserCol()).distinct()
-            K = 50
+            K = 30
             recoms = model.recommendForUserSubset(user_ids, K)
 
             #recommendForAllItems
@@ -87,7 +87,7 @@ def main(spark, netID, infile):
             print('predictions done')
 
             ### Group by index and aggregate
-            truth = cf.select('user_Index', 'item_Index').groupBy('user_Index').agg(F.expr('collect_list(item) as truth'))
+            truth = cf.select('user_Index', 'item_Index').groupBy('user_Index').agg(F.expr('collect_list(item_Index) as truth'))
             print('truth done')
 
 
