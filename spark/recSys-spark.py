@@ -21,16 +21,28 @@ import subprocess
 # yarn application -kill {app_id}
 
 def main(spark, netID, infile):
-    if infile == 'truth':
-        cf = spark.read.parquet(f'/user/{netID}/data_truth.pq')
+    if infile == 'sparse':
+        cf = spark.read.parquet(f'/user/{netID}/data_sparse.pq')
     else:
         
-        cf = spark.read.parquet(f'/user/{netID}/data_bert.pq')
+        cf = spark.read.parquet(f'/user/{netID}/data_sent.pq')
 
     cf.createOrReplaceTempView('cf')
-
+    cf_val = spark.read.parquet(f'/user/{netID}/val_data.pq')
+    cf_val.createOrReplaceTempView('cf_val') 
     ### Select users
-    train_users = set(row['user'] for row in cf.select('user').distinct().collect())  
+    train_users = set(row['user'] for row in cf.select('user').distinct().collect()) 
+    indexer_user = StringIndexer(inputCol="user", outputCol="user_Index")
+    indexed_user = indexer_user.setHandleInvalid("skip").fit(cf)
+
+    cf = indexed_user.transform(cf)
+    cf_val = indexed_user.transform(cf_val) 
+    
+    indexer_track = StringIndexer(inputCol="item", outputCol="item_Index")
+    indexed_track = indexer_track.setHandleInvalid("skip").fit(cf)
+    cf = indexed_track.transform(cf)
+    cf_val = indexed_track.transform(cf_val)
+
     print(f'Number of users in training: {len(train_users)}')
 
 
@@ -58,27 +70,28 @@ def main(spark, netID, infile):
             else:  
                 print(f'code:{code}') 
                 print('No trained model found, start training...')
-                als = ALS(rank=rank, maxIter=5, seed=40, regParam=regParam, userCol="user", itemCol="item", ratingCol="rating", implicitPrefs=False,nonnegative=True,coldStartStrategy="drop")
+                als = ALS(rank=rank, maxIter=5, seed=40, regParam=regParam, userCol="user_Index", itemCol="item_Index", ratingCol="rating", implicitPrefs=False,nonnegative=True,coldStartStrategy="drop")
                 model = als.fit(cf)
                 ### Save model for testing set
                 als.write().overwrite().save(f'model/als_{rank}_{regParam}_{infile}')
                 model.write().overwrite().save(f'model/model_{rank}_{regParam}_{infile}')
                 print('model saved')
            
+            user_ids = cf_val.select(als.getUserCol()).distinct()
             K = 50
-            recoms = model.recommendForAllUsers(K)
+            recoms = model.recommendForUserSubset(user_ids, K)
 
             #recommendForAllItems
 
-            predictions = recoms.select('user','recommendations.item')
+            predictions = recoms.select('user_Index','recommendations.item_Index')
             print('predictions done')
 
             ### Group by index and aggregate
-            truth = cf.select('user', 'item').groupBy('user').agg(F.expr('collect_list(item) as truth'))
+            truth = cf.select('user_Index', 'item_Index').groupBy('user_Index').agg(F.expr('collect_list(item) as truth'))
             print('truth done')
 
 
-            combined = predictions.join(functions.broadcast(truth), 'user', 'inner').rdd
+            combined = predictions.join(functions.broadcast(truth), 'user_Index', 'inner').rdd
             combined_mapped = combined.map(lambda x: (x[1], x[2]))
             print('rdd created')
             ### Metrics ref:https://spark.apache.org/docs/2.3.0/api/python/pyspark.mllib.html#pyspark.mllib.evaluation.RankingMetrics
