@@ -22,10 +22,10 @@ import subprocess
 
 def main(spark, netID, infile):
     if infile == 'sparse':
-        cf = spark.read.parquet(f'/user/{netID}/data_sparse.pq')
+        cf = spark.read.parquet(f'/user/{netID}/train_sparse.pq')
     else:
         
-        cf = spark.read.parquet(f'/user/{netID}/data_sent.pq')
+        cf = spark.read.parquet(f'/user/{netID}/train_sent.pq')
 
     cf.createOrReplaceTempView('cf')
     cf_val = spark.read.parquet(f'/user/{netID}/val_data.pq')
