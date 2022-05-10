@@ -23,9 +23,14 @@ import subprocess
 def main(spark, netID, infile):
     if infile == 'sparse':
         cf = spark.read.parquet(f'/user/{netID}/train_sparse.pq')
-    else:
-        
+    elif infile == 'bert':
         cf = spark.read.parquet(f'/user/{netID}/train_sent.pq')
+    elif infile == 'roberta':
+        cf = spark.read.parquet(f'/user/{netID}/train_sent_rob.pq')
+    elif infile == 'prompt':
+        cf = spark.read.parquet(f'/user/{netID}/train_sent_pro.pq')
+    else:
+        cf = spark.read.parquet(f'/user/{netID}/train_sent_rp.pq')
 
     cf.createOrReplaceTempView('cf')
     cf_val = spark.read.parquet(f'/user/{netID}/val_data.pq')
