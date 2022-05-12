@@ -1,0 +1,116 @@
+Container: container_1652099903241_0948_01_000001 on hc05.nyu.cluster_8041
+LogAggregationType: AGGREGATED
+==========================================================================
+LogType:stdout
+LogLastModifiedTime:Wed May 11 23:39:02 -0400 2022
+LogLength:2840
+LogContents:
+Number of users in training: 177163
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:15, regParam: 0.01, map score:  0.05271266191287068, ndcg score: 0.07048998247155305, pk score: 0.005062505964309573
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:15, regParam: 0.1, map score:  0.11270741133889384, ndcg score: 0.14508357208550124, pk score: 0.01315488119095334
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:15, regParam: 1, map score:  0.06963968471877695, ndcg score: 0.08115155269259436, pk score: 0.005468079015173207
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:50, regParam: 0.01, map score:  0.281652408441214, ndcg score: 0.3316667633437948, pk score: 0.026157076056875648
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:50, regParam: 0.1, map score:  0.3658501453386571, ndcg score: 0.43669076716722693, pk score: 0.03945032922988838
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:50, regParam: 1, map score:  0.1215296665034832, ndcg score: 0.12893959381404058, pk score: 0.007090371218627733
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:100, regParam: 0.01, map score:  0.4289866634254853, ndcg score: 0.48570492878092436, pk score: 0.04465120717625728
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:100, regParam: 0.1, map score:  0.435322240969216, ndcg score: 0.510009696781214, pk score: 0.046192384769539054
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:100, regParam: 1, map score:  0.12677467549082078, ndcg score: 0.1337771575913221, pk score: 0.007118999904571047
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:150, regParam: 0.01, map score:  0.48542542809185063, ndcg score: 0.5409703523234699, pk score: 0.05180360721442887
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:150, regParam: 0.1, map score:  0.46020970550023016, ndcg score: 0.5362431350012454, pk score: 0.04896936730604062
+code:1
+No trained model found, start training...
+model saved
+predictions done
+truth done
+rdd created
+metrics done
+Rank:150, regParam: 1, map score:  0.12862963101731867, ndcg score: 0.13528679939280214, pk score: 0.007166714381143237
+
+End of LogType:stdout
+***********************************************************************
+
+
+End of LogType:stdout
+***********************************************************************
+
+
+End of LogType:stdout
+***********************************************************************
+
