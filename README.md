@@ -1,4 +1,5 @@
 # nlu_project
+The paper is [here](./NLU_paper_Group18.pdf).
 
 ## Usuage
 
