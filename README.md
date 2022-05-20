@@ -1,4 +1,4 @@
-# nlu_project
+# Enhancing Collaborative Filtering Recommender with Prompt-Based Sentiment Analysis 
 The paper is [here](./NLU_paper_Group18.pdf).
 
 ## Usuage
